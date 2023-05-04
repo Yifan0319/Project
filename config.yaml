@@ -1,0 +1,12 @@
+end: 9000000
+events:
+- /Volumes/Projects2023/ev0000364000.h5
+- /Volumes/Projects2023/ev0000447288.h5
+- /Volumes/Projects2023/ev0000593283.h5
+- /Volumes/Projects2023/ev0000734973.h5
+- /Volumes/Projects2023/ev0000773200.h5
+- /Volumes/Projects2023/ev0001903830.h5
+- /Volumes/Projects2023/ev0002128689.h5
+num_channels: 3
+output_file: exercise.npy
+start: 8640000
