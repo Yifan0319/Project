@@ -1,0 +1,54 @@
+# Sample parameter file for extracting a portion of the data 
+# -----------------------------------------------------------
+#
+# This file uses YAML (https://yaml.org) markup for defining the
+# parameters of any run. It uses the PYAML python library (https://pyyaml.org) 
+# in order to convert every entry here into python objects (dict, list, ...).
+#
+# According to the doc of PYAML, all the sections here are dictionaries
+# that are fed to the different functions in the main code. 
+# 
+# This files extract for all events one hour of data from the second day 
+# from the 2 stations closest to the events. 
+# Data are saved as a multi-dimensional matrix in numpy format.
+# Assuming 8 events are available and data have 3 channels, the saved data have dimensions: 
+# 8 X 2 x 3 X 360000.
+#
+# Author: Stefano Giani
+# Email: stefano.giani@durham.ac.uk
+
+# Data repository
+# ---------------
+#   Used by the code to find the files containing the events
+#   Repository is the path to the folder containing the data files.
+#   Events is either ALL to indicate all files must be used orthe list of files
+#   to process.
+#   Filename is the name of the file to save the extracted data.
+#   Data are saved as a multi-dimensional matrix in numpy format.
+#   The saved data have dimensions: number of events X number of stations x number of channels X length of the time window.
+data:
+    load:
+        repository: /Volumes/Projects2023/  # NOTE: Modify this file path to reflect your own mount path
+        events: ALL
+    save: 
+        filename: test.npy
+
+# Data extraction
+# ---------------
+#   Used to determine what portion of the data to extract.
+#   Start indicate the index of the first data point to extract. 
+#   Start is expressed in hours from the beginning of the data files.
+#   For example, 24 is midnight of the first day.
+#   End indicate the index of the last data point to extract. 
+#   End is expressed in hours from the beginning of the data files.
+#   For example, 25 is the first hour of the second day.
+#   Data is sampled at 100 Hz, so 1 hour is 3600*100 data points.
+#   N_stations is the number of stations to extract. 
+#   The stations are selected for every events as the n_stations
+#   closest to the events.
+filter:
+    start: 24
+    end: 25
+    n_stations: 2
+
+
