@@ -13,7 +13,7 @@ repository_path = config['data']['load']['repository']
 
 if event_paths == "ALL":
     # Get all file names in the repository directory
-    event_files = [os.path.join(repository_path, file) for file in os.listdir(repository_path)]
+    event_files = [os.path.join(repository_path, file) for file in os.listdir(repository_path) if file.endswith(".h5")]
 else:
     event_files = event_paths  # Use the provided file paths
 
@@ -35,11 +35,11 @@ for file_path in event_files:
     print(f"The closest distance is {min_distance}, found in station {min_station}")
 
     # Allocate space for the extracted data
-    extracted_data = np.empty((len(stations_list), n_stations, config['filter']['end'] - config['filter']['start']))
+    extracted_data = np.empty((len(stations_list), n_stations, 3+1,config['filter']['end'] - config['filter']['start']))
 
     # Extract data from each station
     for i, station in enumerate(stations_list):
-        extracted_data[i, 0:n_stations, :] = f[station][0:n_stations, config['filter']['start']:config['filter']['end']]
+        extracted_data[i, 0:n_stations, :3, :] = f[station][0:3, config['filter']['start']:config['filter']['end']]
     print("The shape of extracted data:", extracted_data.shape)
 
     # Save the extracted data
