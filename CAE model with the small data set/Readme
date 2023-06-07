@@ -1,0 +1,10 @@
+I just use the small h5 file to set the model first.
+
+
+1. "Data_process.py" file
+
+I have already processed the data set, I just used only the first 5 min of each hour. So, I got 750 hours data, the data size is 750*251*16*1 (one station and one channel). Moreover, the size of the sample after the short-time FFT change is 251*16. Next, I will change it to 3 channels, then the size will be 750*251*16*3.
+
+2. "main.py" file
+
+It is my model. It can successfully run now. After I build the DEC model, I will improve this model and use all data.
